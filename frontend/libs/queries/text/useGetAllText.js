@@ -1,13 +1,15 @@
 import api from "@/pages/api";
+import useConvo from "@/zustand/useConvo";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetAllText = ({ chatId }) => {
-  console.log("chatId", chatId);
+const useGetAllText = () => {
+  const { message, setMessage, selectedConvo } = useConvo();
   const getAllText = useQuery({
-    queryKey: ["getAllText", chatId],
+    queryKey: ["getAllText"],
     queryFn: async () => {
-      const res = await api.get(`text/get_text/${chatId}`);
-      return res?.data;
+      const res = await api.get(`message/get_messages/${selectedConvo?._id}`);
+      setMessage(res?.data?.data);
+      return res?.data?.data;
     },
     refetchOnWindowFocus: false,
   });

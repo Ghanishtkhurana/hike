@@ -5,7 +5,7 @@ const useGetAllClient = () => {
   const getAllClients = useQuery({
     queryKey: ["getAllClients"],
     queryFn: async () => {
-      const res = await api.get("client/all");
+      const res = await api.get("user/get_users");
       return res?.data?.data;
     },
   });

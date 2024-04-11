@@ -5,6 +5,7 @@ const sendMessageController = async (req, res) => {
   try {
     const { id: receiver } = req.params;
     const { message } = req.body;
+    console.log("message unn", message);
     const senderId = req.profile._id;
 
     if (!message && !receiver && !senderId) {

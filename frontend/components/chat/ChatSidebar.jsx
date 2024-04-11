@@ -4,7 +4,7 @@ import Chatppls from "./ChatSidebar/Chatppls";
 
 const ChatSidebar = () => {
   return (
-    <div className="w-[350px] bg-[#17212b] text-white max-h-screen h-full flex flex-col border-r border-[#314153]">
+    <div className="w-[350px] bg-[#17212b] text-white max-h-screen min-h-full flex flex-col border-r border-[#314153]">
       {/* searchh inp  */}
       <div>
         <ChatSearchBox />

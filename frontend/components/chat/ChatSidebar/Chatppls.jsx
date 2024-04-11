@@ -4,10 +4,12 @@
 //   addNewClient,
 //   selectClient,
 // } from "@/slice/SelectClientSlice";
+import useGetAllClient from "@/libs/queries/users/useGetAllClients";
+import useConvo from "@/zustand/useConvo";
 import { Spinner } from "@nextui-org/react";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { io } from "socket.io-client";
 
@@ -161,42 +163,43 @@ let arr = [
   },
 ];
 const Chatppls = () => {
+  const { data, isLoading } = useGetAllClient();
+  const { selectedConvo, setSelectedConvo } = useConvo();
 
   return (
-    <>
-      {false ? (
+    <div className="">
+      {isLoading ? (
         <div className="flex justify-center items-center gap-3 h-full">
           <Spinner />
           <p className="text-white text-[17px]">Loading ...</p>
         </div>
       ) : (
-        arr?.length > 0 &&
-        arr?.map((el, i) => (
+        data?.length > 0 &&
+        data?.map((el, i) => (
           <div
             key={i}
-            onClick={() => handleTheSelect(el)}
-            className="hover:bg-[#202b36] hover:text-white duration-500 transition-all border-b border-[#253241] py-2 px-3 flex gap-4"
+            onClick={() => setSelectedConvo(el)}
+            className={`hover:bg-[#202b36] ${
+              selectedConvo?._id === el?._id ? "bg-[#202b36]" : ""
+            } hover:text-white duration-500 transition-all border-b border-[#253241] py-2 px-3 flex gap-4`}
           >
             <div
               style={{
                 backgroundColor: "#e91e63",
               }}
-              className={`h-14 w-14 flex justify-center items-center text-[20px] font-semibold overflow-hidden rounded-full`}
+              className={`relative h-14 w-14 flex justify-center items-center text-[20px] font-semibold overflow-hidden rounded-full`}
             >
-              <p>{el.first_name.charAt(0)}</p>
+              <Image src={el?.profile_pic} fill alt="profile" />
             </div>
             <div className="flex flex-col gap-1">
-              <p className="font-semibold text-[15px]">{el.first_name}</p>
-              <p className="text-[13px]">
-                {el?.lastRecievedMessageTime > el?.lastSentMessageTime
-                  ? el?.lastRecievedMessage
-                  : el?.lastSentMessage}
+              <p className="font-semibold text-[15px]">
+                {el?.full_name.charAt(0).toUpperCase() + el?.full_name.slice(1)}
               </p>
             </div>
           </div>
         ))
       )}
-    </>
+    </div>
   );
 };
 

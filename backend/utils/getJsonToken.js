@@ -8,7 +8,7 @@ const getJsonToken = (id, res) => {
   res.cookie("hike", token, {
     httpOnly: true,
     maxAge: 2 * 24 * 60 * 60 * 1000,
-    sameSite: "none",
+    // sameSite: "none",
   });
 };
 

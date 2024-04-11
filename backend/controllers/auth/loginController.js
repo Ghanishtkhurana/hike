@@ -5,6 +5,7 @@ const getJsonToken = require("../../utils/getJsonToken");
 const loginController = async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log("username", username);
     const userFinder = await UserModel.findOne({ username });
     if (!userFinder) {
       return res.status(400).json({ message: "User not found", status: false });
