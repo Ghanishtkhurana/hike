@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Switch } from "@nextui-org/react";
 import { CiSun } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 import useConvo from "@/zustand/useConvo";
 import Image from "next/image";
+import { SocketContext } from "@/context/SocketContext";
 
 let data = {
   first_name: "John",
 };
 const ChatNav = () => {
   const { selectedConvo } = useConvo();
-
+  const { onlineusers } = useContext(SocketContext);
 
   return (
     <div className="flex justify-between items-center h-14 w-full">
@@ -22,7 +23,9 @@ const ChatNav = () => {
           <p className="text-[15px] font-semibold">
             {selectedConvo?.full_name}
           </p>
-          <p className="text-[13px]">user</p>
+          <p className="text-[10px] tracking-wide text-green-400">
+            {onlineusers?.includes(selectedConvo?._id) ? "Online" : "Offline"}
+          </p>
         </div>
       </div>
       <Switch

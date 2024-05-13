@@ -18,7 +18,16 @@ const loginController = async (req, res) => {
         .json({ message: "Incorrect password", status: false });
     }
     getJsonToken(userFinder._id, res);
-    return res.status(200).json({ message: "User logged in", status: true });
+
+    let sendObj = {
+      _id: userFinder._id,
+      username: userFinder.username,
+      fullname: userFinder.full_name,
+      profilePic: userFinder.profile_pic,
+    };
+    return res
+      .status(200)
+      .json({ message: "User logged in", status: true, data: sendObj });
   } catch (error) {
     return res.status(500).json({ message: error.message, status: false });
   }

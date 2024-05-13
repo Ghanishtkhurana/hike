@@ -1,11 +1,16 @@
 import ChatContainer from "@/components/chat/ChatContainer";
 import ChatSidebar from "@/components/chat/ChatSidebar";
+import { AuthContext } from "@/context/AuthContext";
+import useListenMsg from "@/hooks/useListenMsg";
 import useConvo from "@/zustand/useConvo";
-import React from "react";
+import React, { useContext } from "react";
 
 const Chat = () => {
   const { selectedConvo } = useConvo();
-  console.log("selectedConvo", selectedConvo);
+  const { authContext } = useContext(AuthContext);
+  useListenMsg();
+  // console.log("authContext", authContext);
+  // console.log("selectedConvo", selectedConvo);
   return (
     <div className="flex min-h-screen customScrollbar relative">
       <ChatSidebar />

@@ -4,12 +4,13 @@
 //   addNewClient,
 //   selectClient,
 // } from "@/slice/SelectClientSlice";
+import { SocketContext } from "@/context/SocketContext";
 import useGetAllClient from "@/libs/queries/users/useGetAllClients";
 import useConvo from "@/zustand/useConvo";
 import { Spinner } from "@nextui-org/react";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { io } from "socket.io-client";
 
@@ -165,6 +166,7 @@ let arr = [
 const Chatppls = () => {
   const { data, isLoading } = useGetAllClient();
   const { selectedConvo, setSelectedConvo } = useConvo();
+  const { onlineusers } = useContext(SocketContext);
 
   return (
     <div className="">
@@ -195,6 +197,7 @@ const Chatppls = () => {
               <p className="font-semibold text-[15px]">
                 {el?.full_name.charAt(0).toUpperCase() + el?.full_name.slice(1)}
               </p>
+              <p className="text-[12px] text-green-300">{onlineusers.includes(el?._id) ? "Online" : "Offline"}</p>
             </div>
           </div>
         ))

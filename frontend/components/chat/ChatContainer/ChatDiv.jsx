@@ -6,13 +6,15 @@ import useGetAllText from "@/libs/queries/text/useGetAllText";
 import { Spinner } from "@nextui-org/react";
 
 const ChatDiv = () => {
+  // ~ from useConvo zustand we gona get thhe selectedConvo messages and we filling the message arr with useGetAllText hook
   const { selectedConvo, setSelectedConvo, setEmptyMessage, message } =
     useConvo();
+
   const { data, isLoading } = useGetAllText();
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    // when component unmounts this will clean up the state
+    // & when component unmounts this will clean up the state
     return () => {
       setSelectedConvo(null);
     };
@@ -27,7 +29,7 @@ const ChatDiv = () => {
     }, 50);
   }, [isLoading, message]);
 
-  //clean up useEffect
+  // ^ clean up useEffect
   useEffect(() => {
     return () => {
       setEmptyMessage();
@@ -36,7 +38,7 @@ const ChatDiv = () => {
   return (
     <div className="flex w-full h-full flex-col p-3 gap-3">
       {isLoading && (
-        <div>
+        <div className="h-full flex justify-center items-center">
           <Spinner />
         </div>
       )}
