@@ -23,48 +23,64 @@ const Signup = () => {
     mutate(data);
   };
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-screen bg-[#17212b] flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="min-w-[400px] px-10 py-5 border rounded-lg border-gray-500 flex flex-col justify-center items-center gap-10"
+        className="min-w-[400px] px-10 py-10 text-white bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 flex flex-col justify-center items-center gap-10"
       >
         <p className="text-[22px] font-semibold">Sign up</p>
-        <div className="w-full flex flex-col gap-2">
-          <Input
-            {...register("full_name", {
-              required: true,
-            })}
-            label={"Full name"}
-            variant="underlined"
-          />
-          <Input
-            {...register("username", {
-              required: true,
-            })}
-            label={"Username"}
-            variant="underlined"
-          />
-          <Select
-            {...register("gender", {
-              required: true,
-            })}
-            label="Select gender"
-            placeholder=""
-            variant="underlined"
-          >
-            {gen.map((el) => (
-              <SelectItem key={el.value} value={el.value}>
-                {el.label}
-              </SelectItem>
-            ))}
-          </Select>
-          <Input
-            {...register("password", {
-              required: true,
-            })}
-            label={"password"}
-            variant="underlined"
-          />
+        <div className="w-full flex flex-col gap-4">
+          <div>
+            <p className="text-[12px] text-white">Full name</p>
+            <Input
+              {...register("full_name", {
+                required: true,
+              })}
+              variant="underlined"
+              className="text-white"
+              color="secondary"
+            />
+          </div>
+          <div>
+            <p className="text-[12px] text-white">Username</p>
+            <Input
+              {...register("username", {
+                required: true,
+              })}
+              variant="underlined"
+              className="text-white"
+              color="secondary"
+            />
+          </div>
+          <div>
+            <p className="text-[12px] text-white">Gender</p>
+
+            <Select
+              {...register("gender", {
+                required: true,
+              })}
+              placeholder=""
+              color="secondary"
+              variant="underlined"
+            >
+              {gen.map((el) => (
+                <SelectItem key={el.value} value={el.value}>
+                  {el.label}
+                </SelectItem>
+              ))}
+            </Select>
+          </div>
+          <div>
+            <p className="text-[12px] text-white">Password</p>
+            <Input
+              {...register("password", {
+                required: true,
+              })}
+              className="text-white"
+              variant="underlined"
+              color="secondary"
+            />
+          </div>
         </div>
         <Button
           isLoading={isPending}
