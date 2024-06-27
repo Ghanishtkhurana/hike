@@ -11,7 +11,8 @@ const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (authContext) {
-      const newSocket = io("http://localhost:8080", {
+      // const newSocket = io("http://localhost:8080", {
+      const newSocket = io("https://hike-sdmr.onrender.com", {
         query: { userId: authContext._id },
       });
       setSocket(newSocket);
