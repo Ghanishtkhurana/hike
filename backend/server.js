@@ -6,12 +6,12 @@ const cors = require("cors");
 const PORT = process.env.PORT;
 const cookieParser = require("cookie-parser");
 const { app, server } = require("./socket/socket");
-const path = require("path")
+const path = require("path");
 
-const _dirname = path.resolve()
+const _dirname = path.resolve();
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://hike-pearl.vercel.app"],
   credentials: true,
   optionSuccessStatus: 200,
 };
