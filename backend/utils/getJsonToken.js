@@ -9,6 +9,7 @@ const getJsonToken = (id, res) => {
     httpOnly: true,
     maxAge: 2 * 24 * 60 * 60 * 1000,
     sameSite: "none",
+    secure: true,
   });
 };
 
