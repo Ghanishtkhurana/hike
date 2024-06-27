@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new socket.Server(server, {
   cors: {
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000","https://hike-pearl.vercel.app"],
     methods: ["GET", "POST"],
   },
 });
