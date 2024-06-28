@@ -1,5 +1,6 @@
 import useCreateUser from "@/libs/mutations/auth/useCreateUser";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -90,6 +91,11 @@ const Signup = () => {
         >
           Submit
         </Button>
+        <Link href={"/login"}>
+          <p className="text-white text-[12px] hover:text-purple-400 transition-all duration-300">
+           Already have an account ? Login
+          </p>
+        </Link>
       </form>
     </div>
   );

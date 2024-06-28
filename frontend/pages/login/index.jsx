@@ -1,5 +1,6 @@
 import useLogin from "@/libs/mutations/auth/useLogin";
 import { Button, Input } from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -39,7 +40,6 @@ const Login = () => {
                 required: true,
               })}
               className="text-white"
-
               // label={"Password"}
               variant="underlined"
               color="secondary"
@@ -54,6 +54,11 @@ const Login = () => {
         >
           Submit
         </Button>
+        <Link href={"/signup"}>
+          <p className="text-white text-[12px] hover:text-purple-400 transition-all duration-300">
+            Not have an account yet ? Sign In
+          </p>
+        </Link>
       </form>
     </div>
   );
